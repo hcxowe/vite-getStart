@@ -5,13 +5,15 @@ import CSSModules from './style.module.css'
 defineProps<{ msg: string }>()
 
 const count = ref(0)
+
+console.log(import.meta.url)
 </script>
 
 <template>
   <h3 :class="CSSModules.red">{{ msg }}</h3>
 
   <div class="postcss-wraper">
-    <span class="postcss-item">what is postCSS?</span>
+    <span class="postcss-item">what is the postCSS?</span>
   </div>
 
   <button type="button" @click="count++">count is: {{ count }}</button>
