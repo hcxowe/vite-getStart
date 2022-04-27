@@ -13,7 +13,7 @@ export default defineComponent({
             { title: "睡觉", done: false }
         ])
         
-        function addTodo(){
+        function addTodo() {
             todos.value.push({
                 title: title.value,
                 done: false

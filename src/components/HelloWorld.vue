@@ -22,10 +22,7 @@ const count = ref(0)
 <style scoped>
 .postcss-wraper {
     border: 1px solid #ccc;
-    filter: blur(1px);
-    display: grid;
-    text-decoration-thickness: auto;
-  
+
     & .postcss-item {
         color: red;
     }
