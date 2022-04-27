@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import HelloWorld from '@/components/HelloWorld.vue'
+import List from './components/JSXComponent.tsx'
 </script>
 
 <template>
   <HelloWorld msg="Vue3 + TypeScript + Vite" />
+  <List></List>
 </template>
 
 <style>

@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import path from 'path'
 import postcssNesting from 'postcss-nesting'
 import autoPreFixer from 'autoprefixer'
 
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [vue(), vueJsx()],
     css: {
         modules: {
             localsConvention: 'camelCase', // 启用样式名称转换驼峰，可以按名称导入
