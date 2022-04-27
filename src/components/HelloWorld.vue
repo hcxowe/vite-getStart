@@ -10,23 +10,19 @@ const count = ref(0)
 <template>
   <h3 :class="CSSModules.red">{{ msg }}</h3>
 
+  <div class="postcss-wraper">
+    <span class="postcss-item">what is postCSS?</span>
+  </div>
+
   <button type="button" @click="count++">count is: {{ count }}</button>
 </template>
 
 <style scoped>
-a {
-  color: #42b983;
-}
-
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
-
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
+.postcss-wrapper {
+  border: 1px solid #ccc;
+  
+  & .postcss-item {
+    color: red;
+  }
 }
 </style>
