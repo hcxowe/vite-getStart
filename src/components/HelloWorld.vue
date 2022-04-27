@@ -7,6 +7,7 @@ defineProps<{ msg: string }>()
 const count = ref(0)
 
 console.log(import.meta.url)
+console.log(import.meta.env.BASE_URL)
 </script>
 
 <template>
