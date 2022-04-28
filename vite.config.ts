@@ -9,7 +9,8 @@ import autoPreFixer from 'autoprefixer'
 
 export default defineConfig({
     //root: process.cwd(),                // 项目根目录
-    //base: '/',                          // 公共基础路径
+    base: '/vitepreview/',              // 公共基础路径
+    //base: '/',              // 公共基础路径
     //mode: 'development',                // 模式
     //publicDir: 'public',                // 作为静态资源服务的文件夹，该目录中的文件开发期间在 / 处提供，并在构建期间复制到 outDir 的根目录，并且始终按原样提供或复制而无需进行转换
     //cacheDir: 'node_modules/.vite',     // 存储缓存文件的目录，存储预打包的依赖项或 vite 生成的某些缓存文件，清除缓存方式：--force 命令行选项或手动删除目录
