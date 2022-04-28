@@ -8,22 +8,22 @@ import postcssNesting from 'postcss-nesting'
 import autoPreFixer from 'autoprefixer'
 
 export default defineConfig({
-    root: process.cwd(),                // 项目根目录
-    base: '/',                          // 公共基础路径
-    mode: 'development',                // 模式
-    publicDir: 'public',                // 作为静态资源服务的文件夹，该目录中的文件开发期间在 / 处提供，并在构建期间复制到 outDir 的根目录，并且始终按原样提供或复制而无需进行转换
-    cacheDir: 'node_modules/.vite',     // 存储缓存文件的目录，存储预打包的依赖项或 vite 生成的某些缓存文件，清除缓存方式：--force 命令行选项或手动删除目录
-    envDir: 'root',                     // 用于加载 .env 文件的目录。可以是一个绝对路径，也可以是相对于项目根的路径
-    envPrefix: 'VITE_',                 // 以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在源码中
-    define: {                           // 定义全局常量，开发模式为全局变量，构建时静态替换
+    //root: process.cwd(),                // 项目根目录
+    //base: '/',                          // 公共基础路径
+    //mode: 'development',                // 模式
+    //publicDir: 'public',                // 作为静态资源服务的文件夹，该目录中的文件开发期间在 / 处提供，并在构建期间复制到 outDir 的根目录，并且始终按原样提供或复制而无需进行转换
+    //cacheDir: 'node_modules/.vite',     // 存储缓存文件的目录，存储预打包的依赖项或 vite 生成的某些缓存文件，清除缓存方式：--force 命令行选项或手动删除目录
+    //envDir: 'root',                     // 用于加载 .env 文件的目录。可以是一个绝对路径，也可以是相对于项目根的路径
+    //envPrefix: 'VITE_',                 // 以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在源码中
+    /* define: {                           // 定义全局常量，开发模式为全局变量，构建时静态替换
         "__APP_VERSION__": JSON.stringify("v1.0")
-    },
+    }, */
     plugins: [
         vue(), 
         vueJsx(), 
-        legacy({
+        /* legacy({
             targets: ['defaults', 'not IE 11']
-        })
+        }) */
     ],
     css: {
         /* 配置 CSS modules 的行为。选项将被传递给 postcss-modules */
@@ -37,9 +37,9 @@ export default defineConfig({
                 autoPreFixer,   // 自动添加样式前缀
             ]
         },
-        preprocessorOptions: {}, // 指定传递给 CSS 预处理器的选项
+        //preprocessorOptions: {}, // 指定传递给 CSS 预处理器的选项
     },
-    resolve: {
+    /* resolve: {
         alias: {                         // 文件系统路径的别名
             "@": path.resolve(__dirname, "src")
         },
@@ -48,15 +48,15 @@ export default defineConfig({
         mainFields: ['module', 'jsnext:main', 'jsnext'],              // package.json 中，在解析包的入口点时尝试的字段列表
         extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],  // 导入时想要省略的扩展名列表
         preserveSymlinks: false,        // 启用此选项会使 Vite 通过原始文件路径（即不跟随符号链接的路径）而不是真正的文件路径（即跟随符号链接后的路径）确定文件身份
-    },
-    json: {
+    }, */
+    /* json: {
         namedExports: true,             // 是否支持从 .json 文件中进行按名导入
         stringify: false                // 若设置为 true，导入的 JSON 会被转换为 export default JSON.parse("...")，这样会比转译成对象字面量性能更好，尤其是当 JSON 文件较大的时候
-    },
+    }, */
     //esbuild: {},                        // ESbuild 转换选项
     //assetsInclude: [],                  // 指定额外的 picomatch 模式 作为静态资源处理
-    logLevel: 'info',                     // 调整控制台输出的级别: 'info' | 'warn' | 'error' | 'silent'
-    clearScreen: true,                    // 设为 false 可以避免 Vite 清屏而错过在终端中打印某些关键信息
+    //logLevel: 'info',                     // 调整控制台输出的级别: 'info' | 'warn' | 'error' | 'silent'
+    //clearScreen: true,                    // 设为 false 可以避免 Vite 清屏而错过在终端中打印某些关键信息
     
     /* 开发服务器选项 */
     server: {
