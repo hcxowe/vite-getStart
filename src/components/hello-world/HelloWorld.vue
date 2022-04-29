@@ -38,4 +38,23 @@ const count = ref(0)
     mask-image: var(--svg);
     mask-repeat: no-repeat;
 }
+
+.header {
+    height: 60px;
+
+    & .title {
+        font-weight: bold;
+        color: red;
+    }
+
+    @media screen (max-width: 760px) {
+        & {
+            height: 30px;
+        }
+    }
+
+    @nest .content & {
+        height: 50px;
+    }
+}
 </style>

@@ -24,6 +24,9 @@ export default ({ mode }) => {
                     }),   
                 ]
             }
+        },
+        server: {
+            open: true
         }
     })
 }

@@ -1,5 +1,5 @@
 <template>
-    <p>项目版本： {{ env.VITE_APP_TITLE + env.VITE_APP_VERSION }}</p>
+    <p class="version-title">项目版本： {{ env.VITE_APP_TITLE + env.VITE_APP_VERSION }}</p>
     <HelloWorld msg="Vue3 + TypeScript + Vite" />
     <List></List>
 </template>
@@ -20,5 +20,9 @@ console.log(env)
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+}
+
+.version-title {
+    border: 1px solid var(borderColor);
 }
 </style>
