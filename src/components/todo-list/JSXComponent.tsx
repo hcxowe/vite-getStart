@@ -1,4 +1,5 @@
 import { defineComponent, ref, Ref } from 'vue'
+import style from './index.module.css'
 
 interface Todo { 
     title:string, 
@@ -25,7 +26,7 @@ export default defineComponent({
         return () => <div>
             <input type="text" vModel={ title.value } />
             <button onClick={ addTodo }>click</button>
-            <ul>
+            <ul class={style.list}>
                 {
                     todos.value.length ? todos.value.map(todo => {
                         return <li>{ todo.title }</li>
