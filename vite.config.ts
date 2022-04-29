@@ -126,5 +126,45 @@ export default defineConfig({
                 }
             }
         } */
-    }
+    },
+    build: {
+        target: 'modules',                  // ['es2015', 'chrome58']
+        polyfillModulePreload: true,        // 是否自动注入 module preload 的 polyfill.
+        //outDir: '',                         // 输出路径
+        //assetsDir: '',                      // 静态资源的存放路径
+        assetsInlineLimit: 4096,            // 小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 禁用此项
+        cssCodeSplit: true,                 // 启用/禁用 CSS 代码拆分
+        //cssTarget: '',
+        sourcemap: false,                   // 构建后是否生成 source map 文件
+        //lib: {},                          // 库模式
+        //manifest: false,
+        //ssrManifest: false,
+        //ssr: false,
+        minify: 'esbuild',                  // 设置为 false 可以禁用最小化混淆，或是用来指定使用哪种混淆器
+        emptyOutDir: true,                  // 若 outDir 在 root 目录下，则 Vite 会在构建时清空该目录。若 outDir 在根目录之外则会抛出一个警告避免意外删除掉重要的文件。可以设置该选项来关闭这个警告
+        brotliSize: true,                   // 启用/禁用 brotli 压缩大小报告
+        chunkSizeWarningLimit: 500,         // chunk 大小警告的限制（以 kbs 为单位）
+        //watch: null,                        // 设置为 {} 则会启用 rollup 的监听器。在涉及只用在构建时的插件时和集成开发流程中很常用
+        /* rollupOptions: {                 // 自定义底层的 Rollup 打包配置。这与从 Rollup 配置文件导出的选项相同，并将与 Vite 的内部 Rollup 选项合并
+            input: {                        // 多页面定义
+                main: path.resolve(__dirname, 'index.html'),
+                nested: path.resolve(__dirname, 'nested/index.html')
+            }
+        } */
+    },
+    preview: {
+        host: 'localhost',
+        port: 9999,
+        //strictPort: false,
+        //https: false,
+        open: true,
+        //proxy: {},
+        //cors: false
+    },
+    optimizeDeps: {
+        //entries: [],
+        //exclude: [],          // 在预构建中强制排除的依赖项
+        //include: [],          // 默认情况下，不在 node_modules 中的，链接的包不会被预构建。使用此选项可强制预构建链接的包。
+        //keepNames: false,     // 设置此项为 true 可以在函数和类上保留 name 属性
+    }   
 })
