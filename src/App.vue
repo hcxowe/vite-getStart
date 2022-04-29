@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
-//import List from './components/JSXComponent.tsx'
+import List from './components/JSXComponent'
 
 let env:ImportMetaEnv = import.meta.env
 
@@ -14,7 +14,7 @@ console.log(env)
 
   <HelloWorld msg="Vue3 + TypeScript + Vite" />
 
- <!--  <List></List> -->
+  <List></List>
 </template>
 
 <style>
