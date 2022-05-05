@@ -5,7 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'  // 支持jsx，tsx
 
 import postcssNesting from 'postcss-nesting'
 //import autoPreFixer from 'autoprefixer'
-import autoPreFixer = require("autoprefixer")
+import autoPreFixer from 'autoprefixer'
 
 export default ({ mode }) => {
     return defineConfig({
