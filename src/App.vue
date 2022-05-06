@@ -1,16 +1,17 @@
 <template>
-    <p class="version-title">项目版本： {{ env.VITE_APP_TITLE + env.VITE_APP_VERSION }}</p>
-    <HelloWorld msg="Vue3 + TypeScript + Vite" />
-    <List></List>
+    <div class="nav">
+        <router-link to="/">Home</router-link> | 
+        <router-link to="/about">About</router-link>
+    </div>
+
+    <div>
+        <router-view v-slot="{ Component, route }">
+            <keep-alive>
+                <component :is="Component" :key="route.path"/>
+            </keep-alive>
+        </router-view>
+    </div>
 </template>
-
-<script setup lang="ts">
-import HelloWorld from './components/hello-world/HelloWorld.vue'
-import List from './components/todo-list/JSXComponent'
-
-let env:ImportMetaEnv = import.meta.env
-console.log(env)
-</script>
 
 <style>
 #app {
@@ -19,10 +20,17 @@ console.log(env)
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+    height: 100%;
+    padding: 10px;
 }
 
-.version-title {
-    border: 1px solid var(borderColor);
+.nav {
+    font-size: 20px;
+    color: #333;
+    padding: 20px;
+
+    & .router-link-active {
+        color: blue;
+    }
 }
 </style>

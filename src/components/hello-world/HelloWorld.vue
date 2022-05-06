@@ -1,22 +1,39 @@
 <template>
-    <h3 :class="CSSModules.red">{{ msg }}</h3>
+    <div style="padding: 10px;">
+        <h3 :class="CSSModules.red">{{ msg }}</h3>
 
-    <div class="postcss-wraper">
-        <span class="postcss-item">what is the postCSS?</span>
+        <div class="postcss-wraper">
+            <span class="postcss-item">what is the postCSS?</span>
+        </div>
+
+        <button type="button" @click="count++">count is: {{ count }}</button>
+
+        <div class="mask-image"></div>
+
+        <label>账号：</label>
+        <input v-model="username" />
+        <label>密码：</label>
+        <input v-model="password" />
+        <button @click="onModify">修改</button>
     </div>
-
-    <button type="button" @click="count++">count is: {{ count }}</button>
-
-    <div class="mask-image"></div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import CSSModules from './style.module.css'
+import { useUserStore } from '../../store/user'
 
 defineProps<{ msg: string }>()
-
 const count = ref(0)
+
+const userStore =  useUserStore()
+
+let username = ref('')
+let password = ref('')
+
+function onModify() {
+    userStore.modify(username.value, password.value)
+}
 </script>
 
 <style scoped>
@@ -33,6 +50,7 @@ const count = ref(0)
 
     width: 100px;
     height: 100px;
+    margin: 0 auto;
     background: red;
 
     mask-image: var(--svg);
