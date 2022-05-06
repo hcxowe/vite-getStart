@@ -1,4 +1,5 @@
 <template>
+    <h1 class="title">Vue3 + TypeScript + Vite + Pinia</h1>
     <p>{{ '账号：' + userStore.username + ' 密码: ' + userStore.password }}</p>
     <p class="version-title">项目版本： {{ env.VITE_APP_TITLE + env.VITE_APP_VERSION }}</p>
 </template>
@@ -17,6 +18,11 @@ onMounted(() => {
 </script>
 
 <style>
+.title {
+    color: blue;
+    margin-bottom: 10px;
+}
+
 .version-title {
     border: 1px solid var(borderColor);
 }

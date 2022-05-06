@@ -1,5 +1,5 @@
 <template>
-    <HelloWorld msg="Vue3 + TypeScript + Vite + Pinia" />
+    <HelloWorld msg="Hello World!" />
     <List></List>
 </template>
 
