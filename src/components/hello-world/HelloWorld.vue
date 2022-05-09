@@ -1,9 +1,9 @@
 <template>
-    <div style="padding: 10px;">
+    <div class="wrapper">
         <h3 :class="CSSModules.red">{{ msg }}</h3>
 
         <div class="postcss-wraper">
-            <span class="postcss-item">what is the postCSS?</span>
+            <span class="postcss-item" :class="$style.red">what is the postCSS?</span>
         </div>
 
         <button type="button" @click="count++">count is: {{ count }}</button>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, useCssModule } from 'vue'
 import CSSModules from './style.module.css'
 import { useUserStore } from '../../store/user'
 
@@ -34,15 +34,40 @@ let password = ref('')
 function onModify() {
     userStore.modify(username.value, password.value)
 }
+
+/* 获取 css module 定义的类 */
+const moduleClass = useCssModule()
+console.log(moduleClass)
 </script>
 
+<style module>
+.red {
+    color: green;
+}
+</style>
+
 <style scoped>
+.wrapper {
+    padding: 10px;
+}
+
+/* 深度选择器 */
+.wrapper :deep(label) {
+    color: blue;
+}
+
+/* 插槽选择器 */
+:slotted(div) {
+    padding: 10px;
+}
+
+/* 全局选择器 */
+:global(div) {
+    margin: 5px 0;
+}
+
 .postcss-wraper {
     border: 1px solid #ccc;
-
-    & .postcss-item {
-        color: red;
-    }
 }
 
 .mask-image {
