@@ -7,7 +7,7 @@
     <div>
         <router-view v-slot="{ Component, route }">
             <keep-alive>
-                <component :is="Component" :key="route.path" path="route.path"/>
+                <component :is="Component" :key="route.path" />
             </keep-alive>
         </router-view>
     </div>

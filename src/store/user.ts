@@ -6,7 +6,7 @@ interface UserInfo {
 }
 
 function loginApi() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         setTimeout(() => {
             resolve({
                 username: 'hcxowe',

@@ -22,11 +22,11 @@ interface greetingObj {
 
 // 获取由插件注入的数据
 const i18nGreeting: greetingObj | undefined = inject('i18n')
-let greetingShow: string = ''
+let greetingShow = ''
 
-if (typeof i18nGreeting != 'undefined') {
-    for (let key in i18nGreeting) {
-        greetingShow += key + '：' + i18nGreeting[key] + ';'
+if (typeof i18nGreeting !== 'undefined') {
+    for (const key in i18nGreeting) {
+        greetingShow += `${key}：${i18nGreeting[key]};`
     }
 }
 

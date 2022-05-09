@@ -14,7 +14,7 @@ import { ref, reactive, toRef, toRefs, isProxy, isReactive, isReadonly, onMounte
 /* props */
 // withDefaults 为props提供默认值
 const props = withDefaults(defineProps<{
-    path: string,
+    path?: string,
     title?: string,
 }>(), {
     path: 'unknow',
@@ -56,7 +56,7 @@ const { age, isAdmin, hobby } = toRefs(infos)
 isProxy(infos)
 
 // 是否是 reactive 创建的响应式代理
-isReactive(infos) 
+isReactive(infos)
 
 // 是否是 readonly 创建的响应式代理
 isReadonly(infos) // false
@@ -72,9 +72,7 @@ onMounted(() => {
 })
 
 // 计算属性
-const listShow = computed(() => {
-    return list.join(';')
-})
+const listShow = computed(() => list.join(';'))
 
 // 监听
 watchEffect(() => {

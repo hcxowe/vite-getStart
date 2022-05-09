@@ -8,12 +8,18 @@
 import { useUserStore } from '../store/user'
 import { onMounted } from 'vue'
 
-let env:ImportMetaEnv = import.meta.env
+interface ImportMetaEnv {
+    readonly VITE_APP_TITLE: string
+    readonly VITE_APP_VERSION: string
+    readonly NODE_ENV: string
+}
+
+const env:ImportMetaEnv = import.meta.env
 
 const userStore = useUserStore()
 
 onMounted(() => {
-    userStore.getUser()    
+    userStore.getUser()
 })
 </script>
 

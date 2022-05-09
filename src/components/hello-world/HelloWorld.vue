@@ -28,8 +28,8 @@ const count = ref(0)
 
 const userStore =  useUserStore()
 
-let username = ref('')
-let password = ref('')
+const username = ref('')
+const password = ref('')
 
 function onModify() {
     userStore.modify(username.value, password.value)

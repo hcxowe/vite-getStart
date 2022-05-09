@@ -1,19 +1,19 @@
 import { defineComponent, ref, Ref } from 'vue'
 import style from './index.module.css'
 
-interface Todo { 
-    title:string, 
+interface Todo {
+    title:string,
     done:boolean
 }
 
 export default defineComponent({
     setup(props) {
-        let title:Ref<string> = ref('')
-        let todos:Ref<Todo[]> = ref([
-            { title: "学习 Vue 3", done: true },
-            { title: "睡觉", done: false }
+        const title:Ref<string> = ref('')
+        const todos:Ref<Todo[]> = ref([
+            { title: '学习 Vue 3', done: true },
+            { title: '睡觉', done: false }
         ])
-        
+
         function addTodo() {
             todos.value.push({
                 title: title.value,
@@ -28,9 +28,7 @@ export default defineComponent({
             <button onClick={ addTodo }>click</button>
             <ul class={style.list}>
                 {
-                    todos.value.length ? todos.value.map(todo => {
-                        return <li>{ todo.title }</li>
-                    }): <li>no data</li>
+                    todos.value.length ? todos.value.map(todo => <li>{ todo.title }</li>) : <li>no data</li>
                 }
             </ul>
         </div>
