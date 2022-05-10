@@ -72,14 +72,14 @@ module.exports = {
     	'spaced-comment': 'error', 					// 强制注释（//或/*）后面要有一个空格
 		
 		/* ES6相关 */
-    	'arrow-body-style': 'error', 				// 当箭头函数体的花括号可以省略时，不允许出现花括号
-    	'arrow-parens': [							// 箭头函数参数只有一个时，不允许写圆括号
-			'error', 
-			'as-needed'
-		], 	
+    	//'arrow-body-style': 'error', 				// 当箭头函数体的花括号可以省略时，不允许出现花括号
+    	// 'arrow-parens': [							// 箭头函数参数只有一个时，不允许写圆括号
+		// 	'error', 
+		// 	'as-needed'
+		// ], 	
     	'arrow-spacing': 'error', 					// 要求箭头函数的 => 前后有空格
     	'no-confusing-arrow': 'error', 				// 禁止在可能与比较操作符混淆的地方使用箭头函数
-    	'no-duplicate-imports': 'error', 			// 禁止重复导入
+    	//'no-duplicate-imports': 'error', 			// 禁止重复导入
     	'no-var': 'error', 							// 要求使用let或const，而不是var
     	'object-shorthand': 'error', 				// 要求对象字面量使用简写
     	'prefer-const': 'error', 					// 要求使用const声明不会被修改的变量
