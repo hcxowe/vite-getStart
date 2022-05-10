@@ -1,6 +1,6 @@
 import axios from 'axios'
-import type { AxiosInstance } from 'axios'
-import type { InterceptorHooks, RequestConfig, Result } from './types'
+import { AxiosInstance } from 'axios'
+import { InterceptorHooks, RequestConfig, Result } from './types'
 
 class Request {
     private instance: AxiosInstance
@@ -29,12 +29,9 @@ class Request {
 
     request<T = any>(config: RequestConfig): Promise<T> {
         return new Promise((resolve, reject) => {
-            this.instance
-            .request<any, Result<T>>(config)
-            .then((response) => {
+            this.instance.request<any, Result<T>>(config).then((response) => {
                 resolve(response.data)
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 reject(error)
             })
         })
@@ -44,8 +41,8 @@ class Request {
         return this.request({ ...config, method: 'GET' })
     }
 
-    post<T = any>(config: RequestConfig): Promise<T> {
-        return this.request({ ...config, method: 'POST' })
+    post<T = any>(url: string, data?: any): Promise<T> {
+        return this.request({ url, data, method: 'POST' })
     }
 
     delete<T = any>(config: RequestConfig): Promise<T> {

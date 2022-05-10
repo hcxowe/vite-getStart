@@ -22,6 +22,7 @@
 import { ref, useCssModule } from 'vue'
 import CSSModules from './style.module.css'
 import { useUserStore } from '../../store/user'
+import { modifyPwd } from '../../api/user'
 
 defineProps<{ msg: string }>()
 const count = ref(0)
@@ -31,7 +32,11 @@ const userStore =  useUserStore()
 const username = ref('')
 const password = ref('')
 
-function onModify() {
+async function onModify() {
+    const ret = await modifyPwd('123456', password.value)
+
+    console.log(ret)
+
     userStore.modify(username.value, password.value)
 }
 

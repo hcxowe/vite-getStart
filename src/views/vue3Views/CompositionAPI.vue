@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, toRef, toRefs, isProxy, isReactive, isReadonly, onMounted, watchEffect, watch, computed,  } from 'vue'
+import { ref, reactive, toRef, toRefs, isProxy, isReactive, isReadonly, onMounted, watchEffect, watch, computed, Ref } from 'vue'
 
 /* props */
 // withDefaults 为props提供默认值
@@ -43,7 +43,7 @@ const infos = reactive({
     hobby: ['read', 'game', 'sleep']
 })
 const usernameAry: string[] = ['hcxowe', 'ksea', 'yun', 'dh']
-const color: string = ref('#782424')
+const color: Ref<string> = ref('#782424')
 
 // 创建 infos.username 的 ref 对象， username与infos.name保持连接
 const username = toRef(infos, 'username')
