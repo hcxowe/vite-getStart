@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "lint": "lint-staged",
-    "prepare": "husky install",
+    "husky": "husky install",
     "dev": "vite --mode development",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
