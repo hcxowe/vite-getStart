@@ -13,7 +13,7 @@ export default [{
     url: '/api/modifyPwd',
     method: 'post',
     response: ({ body, query }: requestParams) => {
-        console.log('body>>>>>>>>', body)
+        console.log('body>>>>>>>>>', body)
         console.log('query>>>>>>>>', query)
         return {
             code: 0,
