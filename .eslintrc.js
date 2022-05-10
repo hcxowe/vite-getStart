@@ -32,6 +32,7 @@ module.exports = {
             'error',
             'never'
         ],
+        'no-console': 'error',                      // 禁用 console
 		'vue/multi-word-component-names': 0,		// 组件名称不强制多单词模式
 		'default-case': 'error', 					// switch 必须有 default 分支
 		'eqeqeq': 'error',							// 使用 === !==
