@@ -35,14 +35,11 @@ const password = ref('')
 async function onModify() {
     const ret = await modifyPwd('123456', password.value)
 
-    console.log(ret)
-
     userStore.modify(username.value, password.value)
 }
 
 /* 获取 css module 定义的类 */
 const moduleClass = useCssModule()
-console.log(moduleClass)
 </script>
 
 <style module>

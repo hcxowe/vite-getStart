@@ -10,7 +10,7 @@ import { inject, ref, onMounted } from 'vue'
 const provideEl = ref(null)
 
 onMounted(() => {
-    console.log(provideEl.value)
+    // console.log(provideEl.value)
 })
 
 const clickcount    = inject('navClickCount')

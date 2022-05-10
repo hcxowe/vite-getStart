@@ -76,11 +76,11 @@ const listShow = computed(() => list.join(';'))
 
 // 监听
 watchEffect(() => {
-    console.log(`conter: ${count.value}`)
+    // console.log(`conter: ${count.value}`)
 })
 
 watch(count, (newValue, oldVlaue) => {
-    console.log(`conter: ${oldVlaue} => ${newValue}`)
+    // console.log(`conter: ${oldVlaue} => ${newValue}`)
 })
 </script>
 
