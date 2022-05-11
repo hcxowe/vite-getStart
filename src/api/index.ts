@@ -2,7 +2,7 @@
 import Request from '../utils/request'
 
 const BASE_URL = import.meta.env.VITE_API_URL
-const TIME_OUT = 1000 * 5
+const TIME_OUT = 5000
 
 const request = new Request({
     baseURL: BASE_URL,

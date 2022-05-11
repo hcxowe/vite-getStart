@@ -10,8 +10,14 @@ export default defineComponent({
     setup(props) {
         const title:Ref<string> = ref('')
         const todos:Ref<Todo[]> = ref([
-            { title: '学习 Vue 3', done: true },
-            { title: '睡觉', done: false }
+            {
+                title: '学习 Vue 3',
+                done: true
+            },
+            {
+                title: '睡觉',
+                done: false
+            }
         ])
 
         function addTodo() {

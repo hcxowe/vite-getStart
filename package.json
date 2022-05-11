@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "eslint": "eslint src",
     "lint": "lint-staged",
     "husky": "husky install",
     "dev": "vite --mode development",

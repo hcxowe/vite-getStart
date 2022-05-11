@@ -5,6 +5,8 @@ interface UserInfo {
     password: string
 }
 
+const TIMERDELAY = 1000
+
 function loginApi() {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -12,7 +14,7 @@ function loginApi() {
                 username: 'hcxowe',
                 password: '123456'
             })
-        }, 1000)
+        }, TIMERDELAY)
     })
 }
 

@@ -25,12 +25,12 @@ module.exports = {
         'no-template-curly-in-string': 'error',     // 禁止在常规字符串中出现模板字面量占位符语法
 
         /* Best Practices */
-        'curly': 'error',                           // 强制所有控制语句使用一致的括号风格
+        'curly': 'error',                           // 强制所有控制语句使用一致的括号风格 ☻
         'default-case': 'error', 					// switch 必须有 default 分支
-        'eqeqeq': 'error',							// 强制使用 === !==
+        'eqeqeq': 'error',							// 强制使用 === !== ☻
         'no-alert': 'error',                        // 禁用 alert confirm 和 prompt
         'no-caller': 'error',                       // 禁用 arguments.caller 或 arguments.callee
-        'no-else-return': 'error',                  // 禁止 if 语句中 return 语句之后有 else 块
+        'no-else-return': 'error',                  // 禁止 if 语句中 return 语句之后有 else 块 ☻
         'no-empty-function': 'error',               // 禁止出现空函数
         'no-eval': 'error',                         // 禁用 eval()
         'no-implied-eval': 'error',                 // 禁止使用类似 eval() 的方法
@@ -48,10 +48,11 @@ module.exports = {
                 'classes': true,
                 'variables': true
             }
-        ],            
-
-
-
+        ],   
+        
+        /* Stylistic Issues */
+        'func-call-spacing': ['error', 'never'],    // 禁止在函数标识符和其调用之间有空格 如：fun ()
+        'key-spacing': 'error',						// 强制对象属性 : 后需要一个空格
         'indent': [
             'error',
             4										// 缩进4个空格
@@ -64,12 +65,7 @@ module.exports = {
             'error',
             'never'
         ],
-        
 		'vue/multi-word-component-names': 0,		// 组件名称不强制多单词模式
-		
-		
-		
-		
 		'block-spacing': 'error',					// 花括号前后有一个空格， 对象除外
 		'brace-style': [							// if else 的 { 跟 if 同行， } 要换行，或者 { } 在同一行
 			'error',
@@ -81,7 +77,6 @@ module.exports = {
 		'comma-spacing': 'error',					// 逗号前不能有空格，逗号后需要一个空格
 		'comma-style': 'error',						// 逗号放在数组元素，对象属性值之后，且在同一行
 		'computed-property-spacing': 'error',		// obj[ 'a' ] 不允许出现空格
-		'key-spacing': 'error',						// 强制对象属性 : 后需要一个空格
 		'new-cap': 'error',							// 构造函数首字母大写
 		'no-multiple-empty-lines': 'error',			// 限制最多出现两个空行
 		'no-trailing-spaces': 'error', 				// 禁止在空行使用空白字符
@@ -101,8 +96,40 @@ module.exports = {
     	'operator-assignment': 'error', 			// 尽可能的简化赋值操作，如 x=x+1 应简化为 x+=1
     	'semi-spacing': 'error', 					// 强制分号后面有空格，如for (let i=0; i<20; i++)
     	'space-before-blocks': 'error', 			// 强制块（for循环/if/函数等）前面有一个空格，如 for (...) {}
-    	'space-infix-ops': 'error', 				// 强制操作符（ + - / * ）前后有一个空格
-    	'spaced-comment': 'error', 					// 强制注释（//或/*）后面要有一个空格
+    	'space-infix-ops': 'error', 				// 强制操作符（ + - / * ）前后有一个空格				
+        'spaced-comment': [                         // 强制注释（//或/*）后面要有一个空格
+            "error", 
+            "always", 
+            { 
+                "markers": ["/"] 
+            }
+        ],
+        'template-curly-spacing': [                 // 字符串模板 ${ foo } 花括号加空格
+            'error', 
+            'always'
+        ],
+        'space-before-function-paren': [            // 函数左括号之前不要空格
+            "error", 
+            "never"
+        ],  
+        "padding-line-between-statements": [        // 空行
+            'error',
+            { "blankLine": 'always', "prev": '*', "next": 'for' },
+            { "blankLine": 'always', "prev": '*', "next": 'function' },
+            { "blankLine": 'always', "prev": '*', "next": 'if' },
+            { "blankLine": 'always', "prev": '*', "next": 'return' },
+            { "blankLine": 'always', "prev": '*', "next": 'switch' },
+            { "blankLine": 'always', "prev": '*', "next": 'throw' },
+            { "blankLine": 'always', "prev": '*', "next": 'try' },
+            { "blankLine": 'always', "prev": '*', "next": 'while' }
+        ],
+        //'object-property-newline': "error",         // 强制将对象的属性放在不同的行上
+        'lines-between-class-members': [            // 类成员之间非单行申明需要添加空格隔开
+            "error", 
+            "always", { 
+                'exceptAfterSingleLine': true 
+            }
+        ],
 		
 		/* ES6相关 */
     	//'arrow-body-style': 'error', 				// 当箭头函数体的花括号可以省略时，不允许出现花括号
@@ -118,6 +145,7 @@ module.exports = {
     	'prefer-const': 'error', 					// 要求使用const声明不会被修改的变量
     	'prefer-template': 'error', 				// 使用模板字符串，而不是字符串拼接
     	'rest-spread-spacing': 'error', 			// 扩展运算符...和表达式之间不允许有空格
-    	'template-curly-spacing': 'error' 			// 禁止模板字符串${}内前后有空格
+    	'template-curly-spacing': 'error', 			// 禁止模板字符串${}内前后有空格
+        'no-var': 'error',                          // 禁止使用 var   
 	}
 }
