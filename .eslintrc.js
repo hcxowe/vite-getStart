@@ -41,7 +41,14 @@ module.exports = {
         'require-await': 'error',					// 禁止不带 await 的 async
 
         /* Variables */
-        
+        'no-use-before-define': [                   // 禁止在变量申明之前使用
+            'error', 
+            { 
+                'functions': true, 
+                'classes': true,
+                'variables': true
+            }
+        ],            
 
 
 
