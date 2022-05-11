@@ -1,3 +1,4 @@
 {
-    "src/**/*.{vue,js,jsx,ts,tsx}": "eslint"
+    "src/**/*.{vue,js,jsx,ts,tsx}": "eslint",
+    "src/**/*.{vue,js,jsx,ts,tsx,css}": "prettier --write --ignore-unknown"
 }
