@@ -20,6 +20,31 @@ module.exports = {
         '@typescript-eslint'
     ],
     'rules': {
+        /* Possible Errors */
+        'no-console': 'error',                      // 禁用 console
+        'no-template-curly-in-string': 'error',     // 禁止在常规字符串中出现模板字面量占位符语法
+
+        /* Best Practices */
+        'curly': 'error',                           // 强制所有控制语句使用一致的括号风格
+        'default-case': 'error', 					// switch 必须有 default 分支
+        'eqeqeq': 'error',							// 强制使用 === !==
+        'no-alert': 'error',                        // 禁用 alert confirm 和 prompt
+        'no-caller': 'error',                       // 禁用 arguments.caller 或 arguments.callee
+        'no-else-return': 'error',                  // 禁止 if 语句中 return 语句之后有 else 块
+        'no-empty-function': 'error',               // 禁止出现空函数
+        'no-eval': 'error',                         // 禁用 eval()
+        'no-implied-eval': 'error',                 // 禁止使用类似 eval() 的方法
+        'no-labels': 'error',                       // 禁用标签语句
+        'no-magic-numbers': 'error',                // 禁用魔术数字
+        'no-unmodified-loop-condition': 'error',	// 禁用一成不变的循环条件，防止死循环
+        'no-useless-return': 'error',               // 禁止多余的 return 语句 ☻
+        'require-await': 'error',					// 禁止不带 await 的 async
+
+        /* Variables */
+        
+
+
+
         'indent': [
             'error',
             4										// 缩进4个空格
@@ -32,12 +57,12 @@ module.exports = {
             'error',
             'never'
         ],
-        'no-console': 'error',                      // 禁用 console
+        
 		'vue/multi-word-component-names': 0,		// 组件名称不强制多单词模式
-		'default-case': 'error', 					// switch 必须有 default 分支
-		'eqeqeq': 'error',							// 使用 === !==
-		'no-unmodified-loop-condition': 'error',	// 防止死循环
-		'require-await': 'error',					// 禁止不带 await 的 async
+		
+		
+		
+		
 		'block-spacing': 'error',					// 花括号前后有一个空格， 对象除外
 		'brace-style': [							// if else 的 { 跟 if 同行， } 要换行，或者 { } 在同一行
 			'error',
