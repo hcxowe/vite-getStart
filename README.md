@@ -58,7 +58,7 @@ cd vite-getStart
 
 npm install
 
-npm run prepare
+npm run husky
 
 npm run dev
 ```
