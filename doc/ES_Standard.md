@@ -426,4 +426,162 @@
 
 4. 强制对象属性 `:` 后需要一个空格
 
-5. 
+5. 禁用行尾空格
+
+6. 禁止属性前有空白
+
+    ```js
+    // Bad
+    console. log(obj['a'])
+    ```
+
+7. 在花括号中添加空格，`{}` 除外
+    ```js
+    // Good
+    var obj = {}
+    var obj = { 'foo': 'bar' }
+    var obj = { 'foo': { 'bar': 'baz' }, 'qux': 'quxx' }
+    var obj = {
+    'foo': 'bar'
+    }
+    var { x } = y
+    import { foo } from 'bar'
+    ```
+
+8. 在 `for` `function` `if`  `return` `switch` `throw` 
+`try` `while` 前添加空行
+    ```js
+    // Good
+    function foo() {
+        var a = 0
+        var b = 0
+
+        bar()
+    }
+
+    function foo() {
+        let a = 0
+        const b = 0
+
+        bar()
+    }
+
+    function foo() {
+        const a = 0
+        const b = 0
+
+        bar()
+    }
+    ```
+
+9. 在语句块之前添加一个空格
+    ```js
+    // Good
+    if (a) {
+        b()
+    }
+
+    if (a) {
+        b()
+    } else {
+        c()
+    }
+    ```
+
+10. 禁止函数圆括号之前有空格
+    ```js
+    // Good
+    function foo() {
+        // ...
+    }
+
+    var bar = function() {
+        // ...
+    };
+
+    var bar = function foo() {
+        // ...
+    };
+
+    class Foo {
+        constructor() {
+            // ...
+        }
+    }
+    ```
+11. 在操作符前后添加空格
+    ```js
+    // Good
+    let count = a + b
+    function foo(a = 0) {
+        // something
+    }
+    ```
+
+12. 单词类一元操作符后需要添加空格，非单词类不能添加空格
+    ```js
+    // Good
+    delete foo.bar
+    new Foo
+    void 0
+
+    ++foo
+    foo--
+    -foo
+    ```
+
+13. 在注释（//或/*）后面要有一个空格
+    ```js
+    // Good
+    /// This is a comment with a marker
+    // This is a comment with a whitespace at the beginning
+
+    /* This is a comment with a whitespace at the beginning */
+    ```
+
+14. 在 `switch` 的冒号后添加一个或多个空格
+    ```js
+    // Good
+    switch (a) {
+        case 0: foo(); break
+        case 1:
+            bar()
+            break
+        default:
+            baz()
+            break
+    }
+    ```
+
+### ES6相关
+
+1. 当箭头函数体的花括号可以省略时，不允许出现花括号
+    ```js
+    // Good
+    let foo = () => 0
+    let foo = (retv, name) => {
+        retv[name] = true
+        return retv
+    }
+    ```
+
+2. 当箭头函数体的括号可以省略时，不允许出现括号；如果函数体在一个指令块中要求使用圆括号把参数括起来
+    ```js
+    // Good
+    var foo = () => {}
+    var boo = a => {}
+
+    a.then((foo) => {})
+    ```
+
+3. 箭头函数的箭头之前或之后有空格
+
+4. 派生类中的构造函数必须调用 super()
+
+5. 禁止在构造函数中，在调用 super() 之前使用 this 或 super
+
+6. 使用 `let` 或 `const` 避免使用 `var`
+
+7. 使用 `const` 声明那些声明后不再被修改的变量
+
+8. 使用模板字面量代替非字符串连接
