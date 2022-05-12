@@ -21,16 +21,20 @@ module.exports = {
     ],
     'rules': {
         /* Possible Errors */
+        'no-await-in-loop': 'error',                // 禁止在循环中 出现 await
         'no-console': 'error',                      // 禁用 console
         'no-template-curly-in-string': 'error',     // 禁止在常规字符串中出现模板字面量占位符语法
 
         /* Best Practices */
         'curly': 'error',                           // 强制所有控制语句使用一致的括号风格 ☻
         'default-case': 'error', 					// switch 必须有 default 分支
-        'eqeqeq': 'error',							// 强制使用 === !== ☻
+        'eqeqeq': ["error", "always"],	    		// 强制使用 === !== ☻
         'no-alert': 'error',                        // 禁用 alert confirm 和 prompt
         'no-caller': 'error',                       // 禁用 arguments.caller 或 arguments.callee
-        'no-else-return': 'error',                  // 禁止 if 语句中 return 语句之后有 else 块 ☻
+        'no-else-return': [                         // // 禁止 if 语句中 return 语句之后有 else 块 ☻
+            "error", 
+            { 'allowElseIf': false }
+        ],                  
         'no-empty-function': 'error',               // 禁止出现空函数
         'no-eval': 'error',                         // 禁用 eval()
         'no-implied-eval': 'error',                 // 禁止使用类似 eval() 的方法
@@ -39,6 +43,16 @@ module.exports = {
         'no-unmodified-loop-condition': 'error',	// 禁用一成不变的循环条件，防止死循环
         'no-useless-return': 'error',               // 禁止多余的 return 语句 ☻
         'require-await': 'error',					// 禁止不带 await 的 async
+        'dot-notation': "error",                    // 尽量使用点号访问对象属性
+        'no-case-declarations': 'error',            // 禁止在 case 或 default 子句中出现词法声明
+        'no-multi-spaces': [                        // 禁止出现多个空格, 注释前的空格除外
+            "error", 
+            { 'ignoreEOLComments': true }
+        ],
+        'no-multi-str': "error",                    // 禁止多行字符串
+        'no-new-func': "error",                     // 禁用 Function 构造函数
+        'no-return-assign': "error",                // 禁止在返回语句中赋值
+        'no-useless-concat': 'error',               // 禁止没必要的字面量拼接
 
         /* Variables */
         'no-use-before-define': [                   // 禁止在变量申明之前使用
@@ -61,12 +75,13 @@ module.exports = {
             'error',
             'single'								// 单引号
         ],
+        'jsx-quotes': ["error", "prefer-double"],   // jsx 所有不包含双引号的 JSX 属性值使用双引号
         'semi': [
             'error',
             'never'
         ],
 		'vue/multi-word-component-names': 0,		// 组件名称不强制多单词模式
-		'block-spacing': 'error',					// 花括号前后有一个空格， 对象除外
+		'block-spacing': 'error',					// 花括号前后有一个空格，对象除外
 		'brace-style': [							// if else 的 { 跟 if 同行， } 要换行，或者 { } 在同一行
 			'error',
 			'1tbs',
@@ -131,7 +146,7 @@ module.exports = {
             }
         ],
 		
-		/* ES6相关 */
+		/* ES6 */
     	//'arrow-body-style': 'error', 				// 当箭头函数体的花括号可以省略时，不允许出现花括号
     	// 'arrow-parens': [							// 箭头函数参数只有一个时，不允许写圆括号
 		// 	'error', 
