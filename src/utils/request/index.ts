@@ -1,5 +1,4 @@
-import axios from 'axios'
-import { AxiosInstance } from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { InterceptorHooks, RequestConfig, Result } from './types'
 
 class Request {

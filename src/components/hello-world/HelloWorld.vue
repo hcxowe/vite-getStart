@@ -27,7 +27,7 @@ import { modifyPwd } from '../../api/user'
 defineProps<{ msg: string }>()
 const count = ref(0)
 
-const userStore =  useUserStore()
+const userStore = useUserStore()
 
 const username = ref('')
 const password = ref('')

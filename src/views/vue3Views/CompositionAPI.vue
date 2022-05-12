@@ -31,7 +31,7 @@ emit('change', 1)
 
 // 响应式变量
 const count = ref<number>(0)
-const list  = reactive<number[]>([1, 2, 3, 4])
+const list = reactive<number[]>([1, 2, 3, 4])
 const infos = reactive({
     username: 'hcxowe',
     age: 33,

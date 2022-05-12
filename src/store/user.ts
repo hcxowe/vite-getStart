@@ -8,7 +8,7 @@ interface UserInfo {
 const TIMERDELAY = 1000
 
 function loginApi() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         setTimeout(() => {
             resolve({
                 username: 'hcxowe',
@@ -21,10 +21,12 @@ function loginApi() {
 export const useUserStore = defineStore({
     id: 'user',
 
-    state: () => ({
-        username: '',
-        password: ''
-    }),
+    state: () => {
+        return {
+            username: '',
+            password: ''
+        }
+    },
 
     actions: {
         async getUser() {

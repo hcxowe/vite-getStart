@@ -13,8 +13,8 @@ onMounted(() => {
     // console.log(provideEl.value)
 })
 
-const clickcount    = inject('navClickCount')
-const message       = inject('vue3message')
+const clickcount = inject('navClickCount')
+const message = inject('vue3message')
 
 interface greetingObj {
     [name: string]: string

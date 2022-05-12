@@ -8,9 +8,9 @@ const routes: RouteRecordRaw[] = [
         path: '/vue3',
         component: () => import('../views/Vue3Study.vue'),
         children: [
-            { path: '',  redirect: '/vue3/getStart' },
-            { path: 'getStart',  component: () => import('../views/vue3Views/GetStart.vue') },
-            { path: 'composition',  component: () => import('../views/vue3Views/CompositionAPI.vue') }
+            { path: '', redirect: '/vue3/getStart' },
+            { path: 'getStart', component: () => import('../views/vue3Views/GetStart.vue') },
+            { path: 'composition', component: () => import('../views/vue3Views/CompositionAPI.vue') }
         ]
     }
 

@@ -9,21 +9,13 @@ const request = new Request({
     timeout: TIME_OUT,
     interceptorHooks: {
         /* 请求拦截 */
-        requestInterceptor: (config) => {
-            return config
-        },
+        requestInterceptor: config => config,
         /* 请求发生错误拦截 */
-        requestInterceptorCatch: (error) => {
-            return error
-        },
+        requestInterceptorCatch: error => error,
         /* 响应拦截 */
-        responseInterceptor: (response) => {
-            return response
-        },
+        responseInterceptor: response => response,
         /* 响应发生错误拦截 */
-        responseInterceptorCatch: (error) => {
-            return error
-        }
+        responseInterceptorCatch: error => error
     }
 })
 
