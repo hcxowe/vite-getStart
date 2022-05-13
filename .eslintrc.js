@@ -39,7 +39,7 @@ module.exports = {
         'no-eval': 'error',                         // 禁用 eval()
         'no-implied-eval': 'error',                 // 禁止使用类似 eval() 的方法
         'no-labels': 'error',                       // 禁用标签语句
-        //'no-magic-numbers': 'error',                // 禁用魔术数字
+        'no-magic-numbers': 'warn',                 // 禁用魔术数字
         'no-unmodified-loop-condition': 'error',	// 禁用一成不变的循环条件，防止死循环
         'no-useless-return': 'error',               // 禁止多余的 return 语句 ☻
         'require-await': 'error',					// 禁止不带 await 的 async
@@ -65,7 +65,7 @@ module.exports = {
         ],   
         
         /* Stylistic Issues */
-        //'func-call-spacing': ['error', 'never'],    // 禁止在函数标识符和其调用之间有空格 如：fun ()
+        'func-call-spacing': ['warn', 'never'],     // 禁止在函数标识符和其调用之间有空格 如：fun ()
         'key-spacing': 'error',						// 强制对象属性 : 后需要一个空格
         'indent': [
             'error',
@@ -153,17 +153,17 @@ module.exports = {
 		
 		/* ES6 */
     	'arrow-body-style': [                       // 当箭头函数体的花括号可以省略时，不允许出现花括号
-            "error", 
+            "warn", 
             "as-needed",
             { "requireReturnForObjectLiteral": true } // 显示 return 对象字面量
         ], 				
     	'arrow-parens': [							// 箭头函数参数只有一个时，不允许写圆括号
-			'error', 
+			'warn', 
 			'as-needed',
             { "requireForBlockBody": true }         // 如果函数体在一个指令块中（被花括号括起来）要求使用圆括号把参数括起来
 		], 	
     	'arrow-spacing': 'error', 					// 要求箭头函数的 => 前后有空格
-        'constructor-super': "error",                 // 派生类中构造函数强制调用 super()
+        'constructor-super': "error",               // 派生类中构造函数强制调用 super()
     	'no-confusing-arrow': 'error', 				// 禁止在可能与比较操作符混淆的地方使用箭头函数
     	'no-duplicate-imports': 'error', 			// 禁止重复导入
     	'no-var': 'error', 							// 要求使用let或const，而不是var
@@ -172,6 +172,5 @@ module.exports = {
     	'prefer-template': 'error', 				// 使用模板字符串，而不是字符串拼接
     	'rest-spread-spacing': 'error', 			// 扩展运算符...和表达式之间不允许有空格
     	'template-curly-spacing': 'error', 			// 禁止模板字符串${}内前后有空格
-        'no-var': 'error',                          // 禁止使用 var   
 	}
 }
