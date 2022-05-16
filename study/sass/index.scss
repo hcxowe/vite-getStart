@@ -1,0 +1,120 @@
+/* 1. 嵌套 */
+.wrapper {
+    display: flex;
+    align-items: center;
+
+    span {
+        color: #fff;
+    }
+
+    &-title {
+        font-size: 20px;
+    }
+
+    &:hover {
+        background: #7ca9f1;
+    }
+
+    /* 属性嵌套 */
+    font: {
+        size: 12px;
+        weight: bold;
+    }
+}
+
+/* 2. 变量 */
+$button-primary-color: #80b0fc;
+
+.button-primary {
+    background-color: $button-primary-color;
+
+    /* 变量支持块级作用域，嵌套规则内定义的变量只能在嵌套规则内使用（局部变量） */
+    $text-color: #fff;
+
+    span {
+        color: $text-color;
+    }
+}
+
+/* 数据类型 */
+
+/* 字符串：使用 #{} (interpolation) 时，有引号字符串将被编译为无引号字符串 */
+@mixin firefox-message($selector) {
+    body.firefox #{$selector}:before {
+        content: "Hi, Firefox users!";
+    }
+}
+
+@include firefox-message(".header");
+
+/* 数组： list */
+
+/* Maps */
+
+/* 颜色 */
+
+/* 3. 运算 */
+/* + - * / < > >= <= == != */
+.operation {
+    $font-size: 20px;
+    $line-height: 1;
+
+    width: 1px + 2px;
+    height: 100% / 4;
+    font: #{$font-size}/#{$line-height};
+
+    background: #333 + #444;
+    color: #333 * 2;
+
+    cursor: e + -resize;
+}
+
+/* 颜色值的 alpha channel 可以通过 opacify 或 transparentize 两个函数进行调整 */
+$translucent-red: rgba(255, 0, 0, 0.5);
+p {
+  color: opacify($translucent-red, 0.3);
+  background-color: transparentize($translucent-red, 0.25);
+}
+
+/* 圆括号 */
+p {
+    width: 1em + (2em * 3);
+}
+
+/* 函数 */
+.function {
+    color: hsl(0, 100%, 50%);
+}
+
+// 关键词参数，增加易读性
+p {
+    color: hsl($hue: 0, $saturation: 100%, $lightness: 50%);
+}
+
+/* 插值语句 #{} */
+$name: foo;
+$attr: border;
+p.#{$name} {
+  #{$attr}-color: blue;
+}
+
+/* & 引用当前父选择器*/
+.foo.bar .baz.bang, .bip.qux {
+    $selector: &;
+}
+
+/* 
+ * 变量定义 !default
+ * 如果变量已经被赋值，不会再被重新赋值，但是如果变量还没有被赋值，则会被赋予新的值
+ * 变量是 null 空值时将视为未被 !default 赋值
+ */
+$content: "First content";
+$content: "Second content?" !default;
+$text-disabled-color: null;
+$text-disabled-color: #7ca9f1 !default;
+
+#main {
+    content: $content;
+    color: $text-disabled-color;
+}
+
