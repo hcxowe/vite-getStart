@@ -7,18 +7,17 @@ import eslint from 'vite-plugin-eslint'
 import { viteMockServe } from 'vite-plugin-mock'
 
 import postcssNesting from 'postcss-nesting'
-//import autoPreFixer from 'autoprefixer'
 import autoPreFixer from 'autoprefixer'
 
 export default ({ mode, command }: ConfigEnv): UserConfigExport => {
     return defineConfig({
-        base: mode == 'development' ? '' : '/vitepreview/',   // 公共基础路径
+        base: mode === 'development' ? '' : '/vitepreview/',   // 公共基础路径
         plugins: [
             eslint({
                 exclude: ['src/assets/**/*', 'node_modules/**/*'],
-                //fix: true
+                // fix: true
             }),
-            vue(), 
+            vue(),
             vueJsx(),
             viteMockServe({
                 mockPath: './src/mock',
@@ -29,11 +28,11 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
             postcss: {
                 plugins: [
                     // CSS原生嵌套
-                    postcssNesting, 
+                    postcssNesting,
                     // 自动添加样式前缀
                     autoPreFixer({
                         overrideBrowserslist: ['Chrome >= 49'],
-                    }),   
+                    }),
                 ]
             }
         },
