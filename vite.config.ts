@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig, UserConfigExport, ConfigEnv } from 'vite'
 
 import vue from '@vitejs/plugin-vue'         // 支持vue
@@ -24,8 +25,13 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
                 localEnabled: command === 'serve'
             }),
             AutoImport({
-                imports: ['vue', 'vue-router', 'vitest'],
+                imports: ['vue', 'vue-router', 'pinia', 'vitest'],
                 dts: true, // 生成 TypeScript 声明
+                eslintrc: {
+                    enabled: false, // 自动导入有变动时修改为true，变更完成后改为false
+                    filepath: './.eslintrc-auto-import.json',
+                    globalsPropValue: true
+                }
             }),
         ],
         css: {
@@ -42,6 +48,16 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
         },
         server: {
             open: true
+        },
+        test: {
+            include: ['src/**/*.test.{js,ts,jsx,tsx}'],
+            exclude: ['**/node_modules/**', '**/dist/**'],
+            clearMocks: true,
+            environment: 'jsdom',
+            //setupFiles: ['./vitest.setup.ts'],
+            transformMode: {
+                web: [/\.[jt]sx$/]
+            }
         }
     })
 }
