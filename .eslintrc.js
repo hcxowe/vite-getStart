@@ -8,7 +8,8 @@ module.exports = {
     'extends': [
         'eslint:recommended',
         'plugin:vue/vue3-essential',
-        'plugin:@typescript-eslint/recommended'
+        'plugin:@typescript-eslint/recommended',
+        './.eslintrc-auto-import.json'
     ],
     'parserOptions': {
         'ecmaVersion': 'latest',
@@ -117,11 +118,11 @@ module.exports = {
             { 'markers': ['/'] }
         ],
         'template-curly-spacing': [                 // 字符串模板 ${ foo } 花括号加空格
-            'error',
+            'warn',
             'always'
         ],
         'space-before-function-paren': [            // 函数左括号之前不要空格
-            'error',
+            'warn',
             'never'
         ],
         'padding-line-between-statements': [        // 空行
