@@ -26,8 +26,7 @@ let greetingShow = ''
 
 if (typeof i18nGreeting !== 'undefined') {
     for (const key in i18nGreeting) {
-        greetingShow += `${key}：${i18nGreeting[key]};`
+        greetingShow += `${ key }：${ i18nGreeting[key] };`
     }
 }
-
 </script>

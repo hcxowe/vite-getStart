@@ -2,6 +2,7 @@
     <div class="nav" @click="onNavClick">
         <router-link to="getStart">getStart</router-link> |
         <router-link to="composition">组合式API</router-link> |
+        <router-link to="components">组件</router-link>
     </div>
 
     <div>

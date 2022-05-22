@@ -1,0 +1,535 @@
+@use 'sass:math';
+@use 'sass:map';
+
+@use '../../../styles/config/config' as *;
+@use '../../../styles/functions/function' as *;
+@use '../../../styles/mixins/var' as *;
+
+// types
+$types: primary, success, warning, danger, error, info;
+
+// Color
+$colors: () !default;
+$colors: map.deep-merge(
+    (
+        'white': #ffffff,
+        'black': #000000,
+        'primary': (
+            'base': #409eff,
+        ),
+        'success': (
+            'base': #67c23a,
+        ),
+        'warning': (
+            'base': #e6a23c,
+        ),
+        'danger': (
+            'base': #f56c6c,
+        ),
+        'error': (
+            'base': #f56c6c,
+        ),
+        'info': (
+            'base': #909399,
+        ),
+    ),
+    $colors
+);
+
+$color-white: map.get($colors, 'white') !default;
+$color-black: map.get($colors, 'black') !default;
+$color-primary: map.get($colors, 'primary', 'base') !default;
+$color-success: map.get($colors, 'success', 'base') !default;
+$color-warning: map.get($colors, 'warning', 'base') !default;
+$color-danger: map.get($colors, 'danger', 'base') !default;
+$color-error: map.get($colors, 'error', 'base') !default;
+$color-info: map.get($colors, 'info', 'base') !default;
+
+@mixin set-color-mix-level($type, $number, $mode: 'light', $mix-color: $color-white) {
+    $colors: map.deep-merge(
+        (
+            $type: (
+                '#{$mode}-#{$number}':
+                mix(
+                    $mix-color,
+                    map.get($colors, $type, 'base'),
+                    math.percentage(math.div($number, 10))
+                ),
+            ),
+        ),
+        $colors
+    ) !global;
+}
+
+// 扩展$color light-1/2/3/4/5/6/7/8/9
+@each $type in $types {
+    @for $i from 1 through 9 {
+        @include set-color-mix-level($type, $i, 'light', $color-white);
+    }
+}
+
+@each $type in $types {
+    @include set-color-mix-level($type, 2, 'dark', $color-black);
+}
+
+// Background
+$bg-color: () !default;
+$bg-color: map.merge(
+    (
+        'page': #0a0a0a,
+        '': #141414,
+        'overlay': #1d1e1f,
+    ),
+    $bg-color
+);
+
+$text-color: () !default;
+$text-color: map.merge(
+    (
+        'primary': #303133,
+        'regular': #606266,
+        'secondary': #909399,
+        'placeholder': #a8abb2,
+        'disabled': #c0c4cc,
+    ),
+    $text-color
+);
+
+$border-color: () !default;
+$border-color: map.merge(
+    (
+        '': #dcdfe6,
+        'light': #e4e7ed,
+        'lighter': #ebeef5,
+        'extra-light': #f2f6fc,
+        'dark': #d4d7de,
+        'darker': #cdd0d6,
+    ),
+    $border-color
+);
+
+$fill-color: () !default;
+$fill-color: map.merge(
+    (
+        '': #f0f2f5,
+        'light': #f5f7fa,
+        'lighter': #fafafa,
+        'extra-light': #fafcff,
+        'dark': #ebedf0,
+        'darker': #e6e8eb,
+        'blank': #ffffff,
+    ),
+    $fill-color
+);
+
+// Background
+$bg-color: () !default;
+$bg-color: map.merge(
+  (
+    '': #ffffff,
+    'page': #f2f3f5,
+    'overlay': #ffffff,
+  ),
+  $bg-color
+);
+
+$disabled: () !default;
+$disabled: map.merge(
+    (
+        'bg-color': getCssVar('fill-color', 'light'),
+        'text-color': getCssVar('text-color', 'placeholder'),
+        'border-color': getCssVar('border-color', 'light'),
+    ),
+    $disabled
+);
+
+$button-padding-vertical: () !default;
+$button-padding-vertical: map.merge(
+    (
+        'large': 13px,
+        'default': 9px,
+        'small': 6px,
+    ),
+    $button-padding-vertical
+);
+
+$button-padding-horizontal: () !default;
+$button-padding-horizontal: map.merge(
+    (
+        'large': 20px,
+        'default': 16px,
+        'small': 12px,
+    ),
+    $button-padding-horizontal
+);
+
+$button-font-size: () !default;
+$button-font-size: map.merge(
+    (
+        'large': getCssVar('font-size', 'base'),
+        'default': getCssVar('font-size', 'base'),
+        'small': 12px,
+    ),
+    $button-font-size
+);
+
+$button-border-radius: () !default;
+$button-border-radius: map.merge(
+    (
+        'large': getCssVar('border-radius', 'base'),
+        'default': getCssVar('border-radius', 'base'),
+        'small': calc(#{getCssVar('border-radius', 'base')} - 1px),
+    ),
+    $button-border-radius
+);
+
+// Button
+$button: () !default;
+$button: map.merge(
+    (
+        'font-weight': getCssVar('font-weight-primary'),
+        'border-color': getCssVar('border-color'),
+        'bg-color': getCssVar('fill-color', 'blank'),
+        'text-color': getCssVar('text-color', 'regular'),
+        'disabled-text-color': getCssVar('disabled-text-color'),
+        'disabled-bg-color': getCssVar('fill-color', 'blank'),
+        'disabled-border-color': getCssVar('border-color-light'),
+        'divide-border-color': rgba($color-white, 0.5),
+        'hover-text-color': getCssVar('color-primary'),
+        'hover-bg-color': getCssVar('color-primary', 'light-9'),
+        'hover-border-color': getCssVar('color-primary-light-7'),
+        'active-text-color': getCssVar('button-hover-text-color'),
+        'active-border-color': getCssVar('color-primary'),
+        'active-bg-color': getCssVar('button', 'hover-bg-color'),
+    ),
+    $button
+);
+
+// 按钮高度
+$common-component-size: () !default;
+$common-component-size: map.merge(
+    (
+        'large': 40px,
+        'default': 32px,
+        'small': 24px,
+    ),
+    $common-component-size
+);
+
+$input-height: () !default;
+$input-height: map.merge($common-component-size, $input-height);
+
+$font-size: () !default;
+$font-size: map.merge(
+    (
+        'extra-large': 20px,
+        'large': 18px,
+        'medium': 16px,
+        'base': 14px,
+        'small': 13px,
+        'extra-small': 12px,
+    ),
+    $font-size
+);
+
+$font-family: () !default;
+$font-family: map.merge(
+    (
+        // default family
+        '':
+        "'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif"
+    ),
+    $font-family
+);
+
+// 按钮间距
+$button-padding-vertical: () !default;
+$button-padding-vertical: map.merge(
+    (
+        'large': 13px,
+        'default': 9px,
+        'small': 6px,
+    ),
+    $button-padding-vertical
+);
+
+// 按钮边框
+$border-width: 1px !default;
+$border-style: solid !default;
+$border-color-hover: getCssVar('text-color', 'disabled') !default;
+
+$border-radius: () !default;
+$border-radius: map.merge(
+    (
+        'base': 4px,
+        'small': 2px,
+        'round': 20px,
+        'circle': 100%,
+    ),
+    $border-radius
+);
+
+$button-border-width: $border-width !default;
+
+// 定义图标按钮中 ICON 与 SPAN 的间隔
+$button-icon-span-gap: () !default;
+$button-icon-span-gap: map.merge(
+    (
+        'large': 8px,
+        'default': 6px,
+        'small': 4px,
+    ),
+    $button-icon-span-gap
+);
+
+@mixin button-variant($type) {
+    $button-color-types: (
+        '': (
+                'text-color': (
+                'color',
+                'white',
+            ),
+            'bg-color': (
+                'color',
+                $type,
+            ),
+            'border-color': (
+                'color',
+                $type,
+            ),
+        ),
+        'hover': (
+            'text-color': (
+                'color',
+                'white',
+            ),
+            'bg-color': (
+                'color',
+                $type,
+                'light-3',
+            ),
+            'border-color': (
+                'color',
+                $type,
+                'light-3',
+            ),
+        ),
+        'active': (
+            'bg-color': (
+                'color',
+                $type,
+                'dark-2',
+            ),
+            'border-color': (
+                'color',
+                $type,
+                'dark-2',
+            ),
+        ),
+        'disabled': (
+            'text-color': (
+                'color',
+                'white',
+            ),
+            'bg-color': (
+                'color',
+                $type,
+                'light-5',
+            ),
+            'border-color': (
+                'color',
+                $type,
+                'light-5',
+            ),
+        ),
+    );
+  
+    @each $type, $typeMap in $button-color-types {
+        @each $typeColor, $list in $typeMap {
+            @include css-var-from-global(('button', $type, $typeColor), $list);
+        }
+    }
+}
+
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
+    padding: $padding-vertical $padding-horizontal;
+    font-size: $font-size;
+    border-radius: $border-radius;
+}
+
+@mixin when($state) {
+    @at-root {
+        &.#{$state-prefix + $state} {
+            @content;
+        }
+    }
+}
+
+// BEM
+$B: null;
+@mixin b($block) {
+    $B: $namespace + '-' + $block !global;
+  
+    .#{$B} {
+        @content;
+    }
+}
+
+@mixin m($modifier) {
+    $selector: &;
+    $currentSelector: '';
+    @each $unit in $modifier {
+        $currentSelector: #{$currentSelector + $selector + $modifier-separator + $unit + ','};
+    }
+
+    @at-root {
+        #{$currentSelector} {
+            @content;
+        }
+    }
+}
+
+:root {
+    color-scheme: light;
+  
+    @include set-css-var-value('color-white', $color-white);
+    @include set-css-var-value('color-black', $color-black);
+  
+    @each $type in (primary, success, warning, danger, error, info) {
+        @include set-css-color-type($colors, $type);
+    }
+  
+    // --el-bg-color-#{$type}
+    @include set-component-css-var('bg-color', $bg-color);
+    // --el-text-color-#{$type}
+    @include set-component-css-var('text-color', $text-color);
+    // --el-border-color-#{$type}
+    @include set-component-css-var('border-color', $border-color);
+    // Fill --el-fill-color-#{$type}
+    @include set-component-css-var('fill-color', $fill-color);
+    // Disable base
+    @include set-component-css-var('disabled', $disabled);
+
+    // Border
+    @include set-css-var-value('border-width', $border-width);
+    @include set-css-var-value('border-style', $border-style);
+    @include set-css-var-value('border-color-hover', $border-color-hover);
+    @include set-css-var-value(
+        'border',
+        getCssVar('border-width') getCssVar('border-style')
+        getCssVar('border-color')
+    );
+
+    // Typography
+    @include set-component-css-var('font-size', $font-size);
+    @include set-component-css-var('font-family', $font-family);
+
+    @include set-css-var-value('font-weight-primary', 500);
+    @include set-css-var-value('font-line-height-primary', 24px);
+
+    // --el-border-radius-#{$type}
+    @include set-component-css-var('border-radius', $border-radius);
+}
+
+@include b(button) {
+    @include set-component-css-var('button', $button);
+}
+
+@include b(button) {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    line-height: 1;
+    height: map.get($input-height, 'default');
+    white-space: nowrap;
+    cursor: pointer;
+    color: getCssVar('button', 'text-color');
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.1s;
+    font-weight: getCssVar('button', 'font-weight');
+    user-select: none;
+    vertical-align: middle;
+    -webkit-appearance: none;
+
+    background-color: getCssVar('button', 'bg-color');
+    border: getCssVar('border');
+    border-color: getCssVar('button', 'border-color');
+
+    &:hover,
+    &:focus {
+        color: getCssVar('button', 'hover', 'text-color');
+        border-color: getCssVar('button', 'hover', 'border-color');
+        background-color: getCssVar('button', 'hover', 'bg-color');
+        outline: none;
+    }
+
+    &:active {
+        color: getCssVar('button', 'active', 'text-color');
+        border-color: getCssVar('button', 'active', 'border-color');
+        background-color: getCssVar('button', 'active', 'bg-color');
+        outline: none;
+    }
+
+    > span {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    & + & {
+        margin-left: 12px;
+    }
+
+    @include button-size(
+        map.get($button-padding-vertical, 'default') - $button-border-width,
+        map.get($button-padding-horizontal, 'default') - $button-border-width,
+        map.get($button-font-size, 'default'),
+        map.get($button-border-radius, 'default')
+    );
+
+    &::-moz-focus-inner {
+        border: 0;
+    }
+
+    @include when(active) {
+        color: getCssVar('button', 'active', 'text-color');
+        border-color: getCssVar('button', 'active', 'border-color');
+        background-color: getCssVar('button', 'active', 'bg-color');
+        outline: none;
+    }
+
+    @include when(disabled) {
+        &,
+        &:hover,
+        &:focus {
+            color: getCssVar('button', 'disabled', 'text-color');
+            cursor: not-allowed;
+            background-image: none;
+            background-color: getCssVar('button', 'disabled', 'bg-color');
+            border-color: getCssVar('button', 'disabled', 'border-color');
+        }
+    }
+
+    @each $type in (primary, success, warning, danger, info) {
+        @include m($type) {
+            @include button-variant($type);
+        }
+    }
+
+    @each $size in (large, small) {
+        @include m($size) {
+            @include set-css-var-value(('button', 'size'), map.get($input-height, $size));
+        
+            height: getCssVar('button', 'size');
+  
+            @include button-size(
+                map.get($button-padding-vertical, $size) - $button-border-width,
+                map.get($button-padding-horizontal, $size) - $button-border-width,
+                map.get($button-font-size, $size),
+                map.get($button-border-radius, $size)
+            );
+        }
+    }
+}
