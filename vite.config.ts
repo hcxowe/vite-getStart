@@ -1,5 +1,4 @@
-/// <reference types="vitest" />
-import { defineConfig, UserConfigExport, ConfigEnv } from 'vite'
+import { defineConfig, UserConfigExport, ConfigEnv } from 'vitest/config'
 
 import vue from '@vitejs/plugin-vue'         // 支持vue
 import vueJsx from '@vitejs/plugin-vue-jsx'  // 支持jsx，tsx
