@@ -28,6 +28,10 @@
 
 > 提供模块化、性能和额外功能的现代 JavaScript 实用程序库
 
+#### Sass
+
+> CSS 预编译期
+
 #### postcss-nesting
 
 > 使用原生 CSS 变量和实现 CSSWG 草案的 PostCSS 插件，编写简单的、符合未来标准的 CSS
@@ -47,6 +51,10 @@
 #### mockjs + vite-plugin-mock
 
 > 请求拦截，用于接口实现之前模拟后台数据返回
+
+#### vitest
+
+> 单元测试
 
 
 ### 使用方式
