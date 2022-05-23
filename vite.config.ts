@@ -1,9 +1,9 @@
 import { defineConfig, UserConfigExport, ConfigEnv } from 'vitest/config'
 
-import vue from '@vitejs/plugin-vue'         // 支持vue
-import vueJsx from '@vitejs/plugin-vue-jsx'  // 支持jsx，tsx
-import eslint from 'vite-plugin-eslint'
-import { viteMockServe } from 'vite-plugin-mock'
+import vue from '@vitejs/plugin-vue'            // 支持 vue
+import vueJsx from '@vitejs/plugin-vue-jsx'     // 支持 jsx，tsx
+import eslint from 'vite-plugin-eslint'         // eslint 检查
+import { viteMockServe } from 'vite-plugin-mock'// mock
 
 import postcssNesting from 'postcss-nesting'
 import autoPreFixer from 'autoprefixer'
@@ -53,7 +53,6 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
             exclude: ['**/node_modules/**', '**/dist/**'],
             clearMocks: true,
             environment: 'jsdom',
-            //setupFiles: ['./vitest.setup.ts'],
             transformMode: {
                 web: [/\.[jt]sx$/]
             }
