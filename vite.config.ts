@@ -7,7 +7,7 @@ import { viteMockServe } from 'vite-plugin-mock'// mock
 
 import postcssNesting from 'postcss-nesting'
 import autoPreFixer from 'autoprefixer'
-import AutoImport from 'unplugin-auto-import/vite'
+import autoImport from 'unplugin-auto-import/vite'
 
 export default ({ mode, command }: ConfigEnv): UserConfigExport => {
     return defineConfig({
@@ -23,7 +23,7 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
                 mockPath: './src/mock',
                 localEnabled: command === 'serve'
             }),
-            AutoImport({
+            autoImport({
                 imports: ['vue', 'vue-router', 'pinia', 'vitest'],
                 dts: true, // 生成 TypeScript 声明
                 eslintrc: {
