@@ -33,7 +33,7 @@ const username = ref('')
 const password = ref('')
 
 async function onModify() {
-    const ret = await modifyPwd('123456', password.value)
+    const ret = await modifyPwd('123456', password.value, '修改密码中，请稍后...')
 
     userStore.modify(username.value, password.value)
 }

@@ -12,13 +12,21 @@ export interface requestParams {
 export default [{
     url: '/api/modifyPwd',
     method: 'post',
-    response: ({ body, query }: requestParams) => {
+    rawResponse: async (req, res) => {
         // console.log('body>>>>>>>>>', body)
         // console.log('query>>>>>>>>', query)
-        return {
-            code: 0,
-            message: 'ok',
-            data: null,
-        }
+        const ret = await new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({
+                    code: 0,
+                    message: 'ok',
+                    data: null,
+                })
+            }, 3000)
+        })
+
+        res.setHeader('Content-Type', 'json')
+        res.statusCode = 200
+        res.end(JSON.stringify(ret))
     },
 }] as MockMethod[]
