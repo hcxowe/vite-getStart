@@ -70,7 +70,8 @@ module.exports = {
         'key-spacing': 'error',						// 强制对象属性 : 后需要一个空格
         'indent': [
             'error',
-            4										// 缩进4个空格
+            4,									    // 缩进4个空格
+            { 'SwitchCase': 1 }
         ],
         'quotes': [
             'error',
