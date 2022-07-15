@@ -290,3 +290,69 @@ interface Point3d extends Point {
 let point3d: Point3d = {x: 1, y: 2, z: 3}
 ```
 
+## 函数
+
+```ts
+// 基本函数定义
+function add(x: number, y: number): number {
+    return x + y
+}
+
+// 可选参数
+function buildName1(firstName: string, lastName?: string) {
+    if (lastName)
+        return firstName + " " + lastName
+    else
+        return firstName
+}
+
+// 默认参数
+function buildName2(firstName: string, lastName = "Smith") {
+    return firstName + " " + lastName
+}
+
+// 如果带默认值的参数出现在必须参数前面，用户必须明确的传入 undefined值来获得默认值
+function buildName3(firstName = "Will", lastName: string) {
+    return firstName + " " + lastName
+}
+
+buildName3(undefined, "Adams")
+
+// 剩余参数
+function buildName(firstName: string, ...restOfName: string[]) {
+    return firstName + " " + restOfName.join(" ")
+}
+
+// this参数
+let deck: Deck = {
+    suits: ["hearts", "spades", "clubs", "diamonds"],
+    cards: Array(52),
+    // 方法预期在Deck类型变量上调用
+    createCardPicker: function(this: Deck) {
+        return () => {
+            let pickedCard = Math.floor(Math.random() * 52)
+            let pickedSuit = Math.floor(pickedCard / 13)
+
+            return {suit: this.suits[pickedSuit], card: pickedCard % 13}
+        }
+    }
+}
+```
+
+#### 重载
+
+```ts
+// 为同一个函数提供多个函数类型定义来进行函数重载
+function pickCard(x: { suit: string; card: number; }[]): number
+function pickCard(x: number): { suit: string; card: number; }
+function pickCard(x): any {
+    if (typeof x == "object") {
+        let pickedCard = Math.floor(Math.random() * x.length)
+        return pickedCard
+    }
+    else if (typeof x == "number") {
+        let pickedSuit = Math.floor(x / 13)
+        return { suit: suits[pickedSuit], card: x % 13 }
+    }
+}
+```
