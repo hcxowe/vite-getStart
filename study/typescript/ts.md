@@ -189,3 +189,104 @@ class Image implements SelectableControl {
     select() { }
 }
 ```
+
+## 类
+
+> protected public private static get set extends
+
+```ts
+class Person {
+    static max: number = 100
+
+    public name: string
+    public age: number
+    
+    // readonly 只能初始化或构造函数中赋值
+    readonly height: number = 176
+
+    // protected 只能在子类中访问
+    protected constructor(name: string, age: number) { 
+        this.name = name
+        this.age  = age
+    }
+
+    public say(msg: string) { 
+        console.log(`${ this.name } say: ${ msg }`)
+    }
+
+    private run(distance: number) { 
+        console.log(`${ this.name } run: ${ distance }`)
+    }
+
+    // 存取器
+    private _fullName: string
+
+    get fullName(): string {
+        return this._fullName
+    }
+
+    set fullName(newName: string) {
+        this._fullName = newName
+    }
+}
+
+class Man extends Person { 
+    private combatEffectiveness: number
+
+    constructor(name, age) { 
+        super(name, age)
+
+        this.combatEffectiveness = 50
+    }
+}
+
+class Woman extends Person { 
+    private beauty: number
+
+    constructor(name, age) { 
+        super(name, age)
+
+        this.beauty = 50
+    }
+}
+
+new Person('hcx', 30)
+new Man('hcx', 30)
+```
+
+#### 抽象类
+
+> 抽象类做为其它派生类的基类使用，不能创建一个抽象类的实例
+
+```ts
+abstract class Animal {
+    // 抽象方法不包含实现，需要在派生类中实现
+    abstract makeSound(): void
+
+    move(): void {
+        console.log('roaming the earch...')
+    }
+}
+
+class Cat extends Animal {
+    makeSound() {
+        console.log('miao miao~')
+    }
+}
+```
+
+#### 把类当做接口使用
+
+```ts
+class Point {
+    x: number
+    y: number
+}
+
+interface Point3d extends Point {
+    z: number
+}
+
+let point3d: Point3d = {x: 1, y: 2, z: 3}
+```
+
