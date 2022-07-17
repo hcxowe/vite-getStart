@@ -356,3 +356,60 @@ function pickCard(x): any {
     }
 }
 ```
+
+## 泛型
+
+> 
+
+```ts
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+// 泛型类型
+interface GenerFn {
+    <T>(arg: T): T
+}
+
+let myIdentity: GenericIdentityFn = identity
+
+// 作为整个接口的一个类型参数
+interface GenerFn<T> {
+    (arg: T): T
+}
+
+let myIdentity: GenericIdentityFn<number> = identity
+```
+
+#### 泛型类
+
+> 泛型类指的是实例部分的类型，所以类的静态属性不能使用这个泛型类型
+
+
+```ts
+class GenericNumber<T> {
+    zeroValue: T
+    add: (x: T, y: T) => T
+}
+```
+
+#### 泛型约束
+
+```ts
+// 使用这个接口和extends关键字来实现约束
+interface Lengthwise {
+    length: number
+}
+
+function loggingIdentity<T extends Lengthwise>(arg: T): T {
+    console.log(arg.length)
+    return arg
+}
+```
+
+```ts
+// 泛型里使用类类型
+function create<T>(c: { new(): T }): T {
+    return new c()
+}
+```
