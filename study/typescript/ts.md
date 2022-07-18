@@ -491,3 +491,25 @@ window.onmousedown = function(mouseEvent) {
     console.log(mouseEvent.button);  //<- Error
 }
 ```
+## 类型兼容性
+
+> TypeScript里的类型兼容性是基于结构子类型的。 结构类型是一种只使用其成员来描述类型的方式
+
+1. TypeScript结构化类型系统的基本规则是，如果x要兼容y，那么y至少具有与x相同的属性
+
+2. 函数：先比较参数，找到同类型参数；比较返回值，找到结构型包含关系
+
+    ```ts
+    let x = (name: string, age: number) => ({ name: 'Alice' })
+    let y = (n: string) => ({ name: 'Alice', age: 10 })
+
+    x = y // OK
+    y = x // Error
+    ```
+
+3. 枚举：枚举类型与数字类型兼容，并且数字类型与枚举类型兼容。不同枚举类型之间是不兼容的
+
+4. 类： 比较两个类类型的对象时，只有实例的成员会被比较。 静态成员和构造函数不在比较的范围内
+
+5. 泛型：对于没指定泛型类型的泛型参数时，会把所有泛型参数当成any比较；指定了类型的只影响使用其做为类型一部分的结果类型；
+
