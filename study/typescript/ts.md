@@ -476,3 +476,18 @@ declare enum Enum {
     C = 2
 }
 ```
+
+## 类型推论
+
+#### 没有明确指出类型的地方, TS会自动进行类型推导
+```ts
+let x = 3 // => let x: number = 3
+let x = [0, 1, null] // => let x: Array<number | null> = [0, 1, null]
+```
+
+#### TS会按上下文进行类型推导
+```ts
+window.onmousedown = function(mouseEvent) {
+    console.log(mouseEvent.button);  //<- Error
+}
+```
