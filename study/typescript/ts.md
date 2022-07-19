@@ -513,3 +513,336 @@ window.onmousedown = function(mouseEvent) {
 
 5. 泛型：对于没指定泛型类型的泛型参数时，会把所有泛型参数当成any比较；指定了类型的只影响使用其做为类型一部分的结果类型；
 
+## 高级类型
+
+#### 交叉类型
+
+> 交叉类型是将多个类型合并为一个类型
+
+```ts
+interface Type1 { 
+    name: string
+}
+
+interface Type2 { 
+    age: number
+}
+
+let xxxxx: Type1 & Type2 = {
+    name: 'hcxowe',
+    age: 10
+}
+```
+
+#### 联合类型
+
+> 联合类型表示一个值可以是几种类型之一
+
+```ts
+let something: string | number | boolean
+
+something = 'hcxowe'
+something = 10
+something = true
+
+// 如果一个值是联合类型，我们只能访问此联合类型的所有类型里共有的成员
+interface Bird {
+    fly()
+    layEggs()
+}
+
+interface Fish {
+    swim()
+    layEggs()
+}
+
+function getSmallPet(): Fish | Bird {
+    // ...
+}
+
+let pet = getSmallPet()
+pet.layEggs() // okay
+pet.swim();   // errors
+```
+
+#### 类型谓词
+
+```ts
+interface Bird {
+    fly()
+    layEggs()
+}
+
+interface Fish {
+    swim()
+    layEggs()
+}
+
+function getSmallPet(): Fish | Bird {
+    // ...
+}
+
+function isFish(pet: Fish | Bird): pet is Fish {
+    return (<Fish>pet).swim !== undefined
+}
+
+let pet = getSmallPet()
+
+
+// TypeScript不仅知道在 if分支里 pet是 Fish类型； 
+// 它还清楚在 else分支里，一定 不是 Fish类型，一定是 Bird类型
+if (isFish(pet)) {
+    pet.swim()
+}
+else {
+    pet.fly()
+}
+```
+
+#### typeof类型保护
+
+> typeof类型保护: 只有两种形式能被识别： typeof v === "typename"和 typeof v !== "typename"， "typename"必须是 "number"， "string"， "boolean"或 "symbol"
+
+```ts
+function padLeft(value: string, padding: string | number) {
+    if (typeof padding === "number") {
+        return Array(padding + 1).join(" ") + value
+    }
+
+    if (typeof padding === "string") {
+        return padding + value
+    }
+
+    throw new Error(`Expected string or number, got '${padding}'.`)
+}
+```
+
+#### instanceof类型保护
+
+```ts
+interface Parent { 
+    getName(): string
+}
+
+class Son implements Parent { 
+    constructor(public name: string) { }
+
+    getName() { 
+        return this.name + ' son'
+    }
+}
+
+class Daughter implements Parent { 
+    constructor(public name: string) { }
+
+    getName() { 
+        return this.name + ' daughter'
+    }
+}
+
+function getRandomPadder() {
+    return Math.random() < 0.5 ?
+        new Son('xuan') :
+        new Daughter('xiao');
+}
+
+let person: Parent = getRandomPadder()
+
+if (person instanceof Son) {
+    // 类型细化为 'Son'
+}
+if (person instanceof Daughter) {
+    // 类型细化为'Daughter'
+}
+```
+
+#### 可以为null的类型
+
+> 类型检查器认为 null与 undefined可以赋值给任何类型
+
+> --strictNullChecks：当你声明一个变量时，它不会自动地包含 null或 undefined。 必须使用联合类型明确的包含它们
+
+```ts
+let x: string | null = null
+```
+
+> 使用了 --strictNullChecks，可选参数/可选属性会被自动地加上 | undefined
+
+```ts
+function f(x: number, y?: number) {
+    return x + (y || 0);
+}
+
+f(1, undefined)
+
+class C {
+    a: number
+    b?: number
+}
+
+let c = new C()
+c.a = 12
+c.a = undefined
+```
+
+> 添加 !后缀： identifier! 从 identifier的类型里去除了 null和 undefined
+
+#### 类型别名
+
+> 类型别名会给一个类型起个新名字
+
+```ts
+type Name = string
+type NameResolver = () => string
+type NameOrResolver = Name | NameResolver
+
+type Container<T> = { value: T }
+```
+
+#### 字符串字面量类型
+
+> 字符串字面量类型允许你指定字符串必须的固定值
+
+```ts
+type Easing = "ease-in" | "ease-out" | "ease-in-out"
+
+function animate(dx: number, dy: number, easing: Easing) {
+    if (easing === "ease-in") {
+        // ...
+    }
+    else if (easing === "ease-out") {
+    }
+    else if (easing === "ease-in-out") {
+    }
+    else {
+        // error! should not pass null or undefined.
+    }
+}
+```
+
+#### 数字字面量类型
+
+```ts
+type Type = 1 | 2 | 3 | 4 | 5 | 6
+```
+
+#### 枚举成员类型
+
+> 当每个枚举成员都是用字面量初始化的时候枚举成员是具有类型的
+
+#### 可辨识联合
+
+它具有3个要素：
+1. 具有普通的单例类型属性— 可辨识的特征
+2. 一个类型别名包含了那些类型的联合— 联合
+3. 此属性上的类型保护
+
+```ts
+interface Square {
+    kind: "square"
+    size: number
+}
+interface Rectangle {
+    kind: "rectangle"
+    width: number
+    height: number
+}
+interface Circle {
+    kind: "circle"
+    radius: number
+}
+
+type Shape = Square | Rectangle | Circle
+
+function assertNever(x: never): never {
+    throw new Error("Unexpected object: " + x)
+}
+
+function area(s: Shape) {
+    switch (s.kind) {
+        case "square": return s.size * s.size
+        case "rectangle": return s.height * s.width
+        case "circle": return Math.PI * s.radius ** 2
+        default: return assertNever(s) // 完整性检查
+    }
+}
+
+// kind属性称做 可辨识的特征
+// Shape 类型别名联合相关类型
+```
+
+#### 多态的 this 类型
+
+```ts
+class BasicCalculator {
+    public constructor(protected value: number = 0) { }
+    public currentValue(): number {
+        return this.value
+    }
+    public add(operand: number): this {
+        this.value += operand
+        return this
+    }
+    public multiply(operand: number): this {
+        this.value *= operand
+        return this
+    }
+}
+
+let v = new BasicCalculator(2)
+            .multiply(5)
+```
+
+#### 索引类型
+
+> 索引类型，编译器就能够检查使用了动态属性名的代码
+
+> keyof T 索引类型查询操作符, 结果为 T 上已知的公共属性名的联合
+
+> T[K] 索引访问操作符
+
+```ts
+function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
+    return names.map(n => o[n])
+}
+```
+
+#### 映射类型
+
+> 在映射类型里，新类型以相同的形式去转换旧类型里每个属性
+
+```ts
+type Readonly<T> = {
+    readonly [P in keyof T]: T[P]
+}
+
+type Partial<T> = {
+    [P in keyof T]?: T[P]
+}
+
+type Nullable<T> = { 
+    [P in keyof T]: T[P] | null 
+}
+
+type Pick<T, K extends keyof T> = {
+    [P in K]: T[P]
+}
+
+type Record<K extends string, T> = {
+    [P in K]: T
+}
+```
+
+#### 预定义的有条件类型
+
+```ts
+Exclude<T, U>   // 从T中剔除可以赋值给U的类型
+
+Extract<T, U>   // 提取T中可以赋值给U的类型
+
+NonNullable<T>  // 从T中剔除null和undefined
+
+ReturnType<T>   // 获取函数返回值类型
+
+InstanceType<T> // 获取构造函数类型的实例类型
+```
