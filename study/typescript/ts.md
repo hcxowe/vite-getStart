@@ -890,3 +890,108 @@ for (let i of list) {
     console.log(i) // "4", "5", "6"
 }
 ```
+
+## 模块
+
+> 任何包含顶级import或者export的文件都被当成一个模块
+
+#### 导出
+
+```ts
+// 重新导出
+export { ZipCodeValidator as RegExpBasedZipCodeValidator } from "./ZipCodeValidator"
+```
+
+```ts
+// 联合导出
+export * from "./StringValidator"
+export * from "./LettersOnlyValidator"
+export * from "./ZipCodeValidator"
+```
+
+```ts
+// 默认导出
+export default function foo() {}
+// 默认导出可以省略名字
+export default function () {}
+```
+
+```ts
+// 默认导出也可以是一个值
+export default 123
+```
+
+#### 导入
+
+```ts
+import { ZipCodeValidator } from "./ZipCodeValidator"
+```
+
+```ts
+// 重命名
+import { ZipCodeValidator as ZCV } from "./ZipCodeValidator"
+```
+
+```ts
+// 将整个模块导入到一个变量
+import * as validator from "./ZipCodeValidator"
+```
+
+```ts
+import "./my-module.js"
+```
+
+### 使用其它的JavaScript库
+
+> 引用非TypeScript编写的类库的类型，需要声明类库所暴露出的API，申明文件类似 .h 文件
+
+#### 外部模块
+
+```ts
+/* 通常在一个大的 .d.ts 文件中，按模块名称来声明类型 */
+
+// 使用 module 关键字并且把名字用引号括起来，方便之后import
+declare module "url" {
+    export interface Url {
+        protocol?: string
+        hostname?: string
+        pathname?: string
+    }
+
+    export function parse(urlStr: string, parseQueryString?, slashesDenoteHost?): Url
+}
+
+declare module "path" {
+    export function normalize(p: string): string
+    export function join(...paths: any[]): string
+    export let sep: string
+}
+```
+
+```ts
+/// <reference path="env.d.ts"/>
+import * as URL from "url"
+let myUrl = URL.parse("http://www.typescriptlang.org")
+```
+
+#### 外部模块简写
+
+> 简写模块里所有导出的类型将是 any
+
+```ts 
+/* env.d.ts */
+declare module "hot-new-module"
+```
+
+### 创建模块结构指导
+
+#### 尽可能地在顶层导出
+
+1. 如果仅导出单个 class 或 function，使用 export default
+2. 如果要导出多个对象，把它们放在顶层里导出
+
+#### 使用重新导出进行扩展
+
+> 不要去改变原来的对象，而是导出一个新的实体来提供新的功能
+
+#### 模块里不要使用命名空间
