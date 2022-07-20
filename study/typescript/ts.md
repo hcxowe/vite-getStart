@@ -871,3 +871,22 @@ InstanceType<T> // 获取构造函数类型的实例类型
 
 11. `Symbol.unscopables` 对象，它自己拥有的属性会被 `with` 作用域排除在外
 
+## 迭代器和生成器
+
+> 当一个对象实现了Symbol.iterator属性时，它是可迭代的；对象上的 Symbol.iterator函数负责返回供迭代的值；
+
+#### for..of 语句
+
+```ts
+let list = [4, 5, 6]
+
+// 迭代对象的键，for..in 可以操作任何对象
+for (let i in list) {
+    console.log(i) // "0", "1", "2",
+}
+
+// 迭代对象的值
+for (let i of list) {
+    console.log(i) // "4", "5", "6"
+}
+```
