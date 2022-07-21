@@ -995,3 +995,39 @@ declare module "hot-new-module"
 > 不要去改变原来的对象，而是导出一个新的实体来提供新的功能
 
 #### 模块里不要使用命名空间
+
+> 不应该对模块使用命名空间，使用命名空间是为了提供逻辑分组和避免命名冲突。 模块文件本身已经是一个逻辑分组，并且它的名字是由导入这个模块的代码指定，所以没有必要为导出的对象增加额外的模块层
+
+## 命名空间
+
+> 命名空间对解决全局作用域里命名冲突, 但它很难去识别组件之间的依赖关系
+
+```ts
+namespace Validation {
+    export interface StringValidator {
+        isAcceptable(s: string): boolean
+    }
+
+    const lettersRegexp = /^[A-Za-z]+$/
+    const numberRegexp = /^[0-9]+$/
+
+    export class LettersOnlyValidator implements StringValidator {
+        isAcceptable(s: string) {
+            return lettersRegexp.test(s)
+        }
+    }
+
+    export class ZipCodeValidator implements StringValidator {
+        isAcceptable(s: string) {
+            return s.length === 5 && numberRegexp.test(s)
+        }
+    }
+}
+
+let strings = ["Hello", "98052", "101"];
+
+let validators: { [s: string]: Validation.StringValidator } = {}
+validators["ZIP code"] = new Validation.ZipCodeValidator()
+validators["Letters only"] = new Validation.LettersOnlyValidator()
+```
+
