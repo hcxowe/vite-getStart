@@ -1031,3 +1031,19 @@ validators["ZIP code"] = new Validation.ZipCodeValidator()
 validators["Letters only"] = new Validation.LettersOnlyValidator()
 ```
 
+## 模块解析规则
+
+## 声明合并
+
+## JSX
+
+1. `as`操作符
+
+
+## 装饰器
+
+## 三斜线指令
+
+`/// <reference path="..." />`指令是三斜线指令中最常见的一种。 它用于声明文件间的 依赖。
+
+`/// <reference types="..." />`指令则声明了对某个包的依赖；例如，把 `/// <reference types="node" />`引入到声明文件，表明这个文件使用了 `@types/node/index.d.ts`里面声明的名字； 并且，这个包需要在编译阶段与声明文件一起被包含进来。
